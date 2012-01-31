@@ -8,6 +8,37 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 endif
 set background=dark
 
+syntax on
+set smartindent
+set autoindent
+set smarttab
+" indent/outdent to nearest tabstops
+set shiftround
+
+" if you want to enforce a max line width
+"if exists('+colorcolumn')
+"  set colorcolumn=90
+"else
+"  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"endif
+
+
+set ic " ignore case in search
+set incsearch " incremental search
+set hlsearch " highlight search results
+set smartcase " ignore case when lowercase
+
+" Turn of highlighting after a search
+"map ,, :nohl
+
+" always have some lines of text when scrolling
+set scrolloff=5
+
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+
 set nocompatible	" Use Vim defaults (much better!)
 set bs=indent,eol,start		" allow backspacing over everything in insert mode
 "set ai			" always set autoindenting on
