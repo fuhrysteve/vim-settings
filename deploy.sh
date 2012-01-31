@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -f ~/.vimrc ] && [ ! -L ~/.vimrc ]
 then
     echo "Backing up existing ~/.vimrc to ~/.vimrc.bak"
