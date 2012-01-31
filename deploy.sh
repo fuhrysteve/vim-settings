@@ -10,3 +10,6 @@ else
     echo "Creating symlink ~/.vimrc, which points to ~/.vim/vimrc"
     ln -s ~/.vim/vimrc ~/.vimrc
 fi
+
+git submodule init
+git submodule update
