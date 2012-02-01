@@ -32,7 +32,7 @@ set smartcase " ignore case when lowercase
 "map ,, :nohl
 
 " always have some lines of text when scrolling
-set scrolloff=5
+set scrolloff=8
 
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
