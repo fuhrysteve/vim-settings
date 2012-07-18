@@ -1,6 +1,8 @@
 call pathogen#infect()
 autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeDirArrows=0
+let NERDTreeIgnore = ['\.pyc$']
+"let g:postgres_change_focus=1
 
 :autocmd FileType php noremap <C-M> :w!<CR>:!php %<CR>
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
@@ -9,9 +11,14 @@ endif
 set background=dark
 
 syntax on
-set smartindent
+"set smartindent
 set autoindent
-set smarttab
+set cindent
+"set smarttab
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set softtabstop=4
 " indent/outdent to nearest tabstops
 set shiftround
 
