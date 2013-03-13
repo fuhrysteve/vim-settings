@@ -10,6 +10,17 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
 endif
 set background=dark
 
+" disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+
 syntax on
 "set smartindent
 set autoindent
