@@ -13,5 +13,12 @@ else
     ln -s ~/.vim/vimrc ~/.vimrc
 fi
 
+VIMINFO_OWNER=$(stat -c "%U" ~/.viminfo)
+
+if [ "$VIMINFO_OWNER" == "root" ]
+then
+    echo "Your .viminfo file is owned by root. Changing owner to $(whoami)"
+    sudo chown $(whoami) ~/.viminfo
+fi
 git submodule init
 git submodule update
