@@ -10,6 +10,3 @@
 [submodule "bundle/postgres"]
 	path = bundle/postgres
 	url = https://github.com/ivalkeen/vim-postgres
-[submodule "bundle/jedi"]
-	path = bundle/jedi
-	url = git://github.com/davidhalter/jedi.git
