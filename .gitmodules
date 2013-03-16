@@ -7,9 +7,9 @@
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = git://github.com/scrooloose/syntastic.git
-[submodule "bundle/postgres"]
-	path = bundle/postgres
-	url = https://github.com/ivalkeen/vim-postgres
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = git://github.com/davidhalter/jedi-vim.git
+[submodule "bundle/simpledb"]
+	path = bundle/simpledb
+	url = https://github.com/ivalkeen/vim-simpledb
