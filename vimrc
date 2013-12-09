@@ -22,6 +22,8 @@ imap <left> <nop>
 imap <right> <nop>
 
 
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
 syntax on
 "set smartindent
 set autoindent
@@ -66,7 +68,7 @@ set viminfo='20,\"50	" read/write a .viminfo file, don't store more
 			" than 50 lines of registers
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
-set nonumber		" no linenumbers
+set number		" linenumbers
 set nohls		" don't highlight everything when searching
 
 " Only do this part when compiled with support for autocommands
