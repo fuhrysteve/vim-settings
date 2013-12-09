@@ -9,6 +9,7 @@ if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
    set fileencodings=utf-8,latin1
 endif
 set background=dark
+set tabpagemax=50
 
 " disable arrow keys
 map <up> <nop>
