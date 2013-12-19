@@ -1,4 +1,20 @@
-call pathogen#infect()
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+
+Bundle 'gmarik/vundle'
+
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'tpope/vim-fugitive.git'
+Bundle 'scrooloose/syntastic.git'
+Bundle 'davidhalter/jedi-vim.git'
+Bundle 'ivalkeen/vim-simpledb'
+
+"call pathogen#infect()
+
 autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeDirArrows=0
 let NERDTreeIgnore = ['\.pyc$']

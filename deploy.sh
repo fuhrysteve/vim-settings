@@ -22,5 +22,4 @@ then
 fi
 git submodule init
 git submodule update
-cd ~/.vim/bundle/jedi-vim
-git submodule update --init
+vim +BundleInstall +qall
