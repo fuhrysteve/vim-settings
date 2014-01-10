@@ -60,6 +60,7 @@ set expandtab
 set softtabstop=4
 " indent/outdent to nearest tabstops
 set shiftround
+set hidden
 
 " if you want to enforce a max line width
 "if exists('+colorcolumn')
