@@ -11,6 +11,18 @@ Bundle 'tpope/vim-fugitive.git'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'davidhalter/jedi-vim.git'
 Bundle 'ivalkeen/vim-simpledb'
+Bundle 'saltstack/salt-vim'
+
+"Bundle 'bling/vim-airline'
+
+set laststatus=2
+let g:airline_powerline_fonts = 1
+
+if exists('+colorcolumn')
+  set colorcolumn=120
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
+endif
 
 autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeDirArrows=0
