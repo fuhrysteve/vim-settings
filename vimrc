@@ -12,6 +12,8 @@ Bundle 'scrooloose/syntastic.git'
 Bundle 'davidhalter/jedi-vim.git'
 Bundle 'ivalkeen/vim-simpledb'
 Bundle 'saltstack/salt-vim'
+Bundle 'nvie/vim-flake8'
+Bundle 'flazz/vim-colorschemes'
 
 "Bundle 'bling/vim-airline'
 
