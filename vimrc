@@ -14,6 +14,7 @@ Bundle 'ivalkeen/vim-simpledb'
 Bundle 'saltstack/salt-vim'
 Bundle 'nvie/vim-flake8'
 Bundle 'flazz/vim-colorschemes'
+Bundle 'gregsexton/MatchTag'
 
 "Bundle 'bling/vim-airline'
 
