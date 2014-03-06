@@ -15,6 +15,7 @@ Bundle 'saltstack/salt-vim'
 Bundle 'nvie/vim-flake8'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gregsexton/MatchTag'
+Bundle 'vim-scripts/ini-syntax-definition'
 
 "Bundle 'bling/vim-airline'
 
@@ -26,6 +27,7 @@ if exists('+colorcolumn')
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
 endif
+au BufReadPost *.conf set syntax=ini
 
 autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeDirArrows=0
