@@ -16,7 +16,10 @@ Bundle 'nvie/vim-flake8'
 Bundle 'zachgersh/vim-colorschemes'
 Bundle 'gregsexton/MatchTag'
 Bundle 'vim-scripts/ini-syntax-definition'
+Bundle 'bling/vim-airline'
+Bundle 'jmcantrell/vim-virtualenv'
 
+let g:syntastic_python_checkers=['flake8']
 " Always show status bar
 set laststatus=2
 au BufReadPost *.conf set syntax=ini
@@ -26,7 +29,19 @@ autocmd vimenter * if !argc() | NERDTree | endif
 let g:NERDTreeDirArrows=0
 let NERDTreeIgnore = ['\.pyc$']
 
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
 set background=dark
+
+if exists("g:colors_name") 
+    if g:colors_name != 'solarized'
+        " I despise bright yellow line numbers
+        " disabled for solarized
+        highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+    endif
+endif
+
 
 " Allow way more tabs
 set tabpagemax=50
@@ -41,8 +56,6 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
-" I despise bright yellow line numbers
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 syntax on
 "set smartindent
@@ -88,3 +101,7 @@ if has("autocmd")
   \   exe "normal! g'\"" |
   \ endif
 endif
+
+
+" 
+cmap w!! w !sudo tee > /dev/null %
