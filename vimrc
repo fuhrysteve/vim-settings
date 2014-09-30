@@ -60,6 +60,9 @@ imap <right> <nop>
 
 
 syntax on
+" prevent slow downs from syntax highlighting
+set synmaxcol=2048
+
 "set smartindent
 set autoindent
 set cindent
