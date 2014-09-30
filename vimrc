@@ -9,7 +9,9 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'tpope/vim-fugitive.git'
 Bundle 'scrooloose/syntastic.git'
-Bundle 'davidhalter/jedi-vim.git'
+if has('python')
+    Bundle 'davidhalter/jedi-vim.git'
+endif
 Bundle 'ivalkeen/vim-simpledb'
 Bundle 'saltstack/salt-vim'
 Bundle 'nvie/vim-flake8'
