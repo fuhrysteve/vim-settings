@@ -1,27 +1,31 @@
 set nocompatible            " Use Vim defaults
 filetype off                " required for vundle, can be turned on later
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'tpope/vim-fugitive.git'
-Bundle 'scrooloose/syntastic.git'
-if has('python')
-    Bundle 'davidhalter/jedi-vim.git'
-endif
-Bundle 'ivalkeen/vim-simpledb'
-Bundle 'saltstack/salt-vim'
-Bundle 'nvie/vim-flake8'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'gregsexton/MatchTag'
-Bundle 'vim-scripts/ini-syntax-definition'
-Bundle 'bling/vim-airline'
-Bundle 'jmcantrell/vim-virtualenv'
+Plugin 'gmarik/vundle'
 
 let g:syntastic_python_checkers=['flake8']
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'tpope/vim-fugitive.git'
+Plugin 'scrooloose/syntastic.git'
+if has('python')
+    Plugin 'davidhalter/jedi-vim.git'
+endif
+Plugin 'ivalkeen/vim-simpledb'
+Plugin 'saltstack/salt-vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'gregsexton/MatchTag'
+Plugin 'vim-scripts/ini-syntax-definition'
+Plugin 'bling/vim-airline'
+Plugin 'hdima/python-syntax'
+Plugin 'groenewege/vim-less'
+
+call vundle#end()
+
 " Always show status bar
 set laststatus=2
 au BufReadPost *.conf set syntax=ini

@@ -33,4 +33,4 @@ then
 fi
 git submodule init
 git submodule update
-vim +BundleInstall! +qall
+vim +PluginInstall! +qall
