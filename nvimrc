@@ -14,15 +14,17 @@ Plugin 'scrooloose/syntastic.git'
 if has('python')
     Plugin 'davidhalter/jedi-vim.git'
 endif
-Plugin 'ivalkeen/vim-simpledb'
-Plugin 'saltstack/salt-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gregsexton/MatchTag'
-Plugin 'vim-scripts/ini-syntax-definition'
 Plugin 'bling/vim-airline'
 Plugin 'hdima/python-syntax'
 Plugin 'groenewege/vim-less'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'Shougo/deoplete.nvim'
+
+"let g:deoplete#enable_at_startup = 1
 
 call vundle#end()
 
@@ -66,6 +68,7 @@ imap <right> <nop>
 syntax on
 " prevent slow downs from syntax highlighting
 set synmaxcol=2048
+set mouse=
 
 "set smartindent
 set autoindent
@@ -94,6 +97,7 @@ filetype plugin on      " Enable filetype-specific plugins
 set bs=indent,eol,start " allow backspacing over everything in insert mode
 "set ai                 " always set autoindenting on
 "set backup             " keep a backup file
+set backupdir=~/.local/share/nvim/swap
 set viminfo='20,\"50    " read/write a .viminfo file, don't store more
                         " than 50 lines of registers
 set history=50          " keep 50 lines of command line history
