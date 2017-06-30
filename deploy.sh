@@ -23,3 +23,5 @@ else
     echo "Creating symlink $HOME/.config/nvim/init.vim which points to $DIR/init.vim"
     ln -s "$DIR/init.vim" "$HOME/.config/nvim/init.vim"
 fi
+
+nvim +PlugInstall! +UpdateRemotePlugins! +qall
