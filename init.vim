@@ -3,8 +3,9 @@ filetype off                " required for vundle, can be turned on later
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_javascript_checkers=['jshint']
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -23,7 +24,7 @@ Plug 'hdima/python-syntax'
 Plug 'groenewege/vim-less'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chase/vim-ansible-yaml'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neomake/neomake'
 Plug 'mpyatishev/vim-sqlformat'
 Plug 'SirVer/ultisnips'
