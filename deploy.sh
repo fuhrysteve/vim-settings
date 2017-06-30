@@ -1,36 +1,25 @@
-#!/bin/bash
+#!/bin/bash -euo pipefail
 
-if [ -f ~/.vimrc ] && [ ! -L ~/.vimrc ]
-then
-    echo "Backing up existing ~/.vimrc to ~/.vimrc.bak"
-    mv ~/.vimrc ~/.vimrc.bak
-fi
-if [ -L ~/.vimrc ]
-then
-    SYMLINK_LOCATION=$(readlink "$HOME/.vimrc")
-    if [ "$SYMLINK_LOCATION" == "$HOME/.vim/vimrc" ]; then
-        echo "Renaming symlink to point to ~/.vim/nvimrc"
-        rm ~/.vimrc
-        ln -s ~/.vim/nvimrc ~/.vimrc
-    else
-        echo "Already have ~/.vimrc symlink, we're good"
+if [[ $EUID = 0 ]]; then
+    read -r -p "You're running as root. Are you sure you want to proceed? [y/N]" response
+    response=${response,,} # tolower
+    if [[ ! $response =~ ^(yes|y| ) ]]; then
+        exit 1
     fi
-else
-    echo "Creating symlink ~/.vimrc, which points to ~/.vim/vimrc"
-    ln -s ~/.vim/nvimrc ~/.vimrc
-fi
-if [ ! -d ~/.nvim ] || [ ! -L ~/.nvim ]; then
-    echo "Creating symlink ~/.nvim which points to ~/.vim"
-    ln -s ~/.vim ~/.nvim
 fi
 
-VIMINFO_OWNER=$(stat -c "%U" ~/.viminfo)
-
-if [ "$VIMINFO_OWNER" == "root" ]
+if [ -f "$HOME/.config/nvim/init.vim" ] && [ ! -L "$HOME/.config/nvim/init.vim" ]
 then
-    echo "Your .viminfo file is owned by root. Changing owner to $(whoami)"
-    sudo chown $(whoami) ~/.viminfo
+    echo "Backing up existing $HOME/.config/nvim/init.vim to $HOME/.config/nvim/init.vim.bak"
+    mv "$HOME/.config/nvim/init.vim" "$HOME/.config/nvim/init.vim.bak"
 fi
-git submodule init
-git submodule update
-vim +PluginInstall! +qall
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [ -L "$HOME/.config/nvim/init.vim" ]
+then
+    echo "Already have $HOME/.config/nvim/init.vim symlink, we're good"
+else
+    echo "Creating symlink $HOME/.config/nvim/init.vim which points to $DIR/init.vim"
+    ln -s "$DIR/init.vim" "$HOME/.config/nvim/init.vim"
+fi
