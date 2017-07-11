@@ -1,37 +1,58 @@
 set nocompatible            " Use Vim defaults
-filetype off                " required for vundle, can be turned on later
+"
+" Fixes the `q` bug https://github.com/neovim/neovim/issues/6403
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
+set guicursor=
 
 call plug#begin('~/.local/share/nvim/plugged')
 
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 
+" Sensible VIM Defaults
 Plug 'tpope/vim-sensible'
+" Git wrapper
 Plug 'tpope/vim-fugitive'
+" quoting / parenthesis matching
 Plug 'tpope/vim-surround'
+" Unix shell wrappers (i.e. :Rename :MkDir :Delete etc)
 Plug 'tpope/vim-eunuch'
-" Plug 'jmcantrell/vim-virtualenv'
+" improved indentation & syntax
 Plug 'pangloss/vim-javascript'
 
-if has('python')                                                                                                                                                                       
-    Plug 'zchee/deoplete-jedi'                                                                                                                                                       
-endif                                                                                                                                                                                  
-Plug 'nvie/vim-flake8'                                                                                                                                                               
+if has('python')
+    " Python smart autocompletion
+    Plug 'zchee/deoplete-jedi'
+endif
+" better solarized theme
 Plug 'romainl/flattened'
-Plug 'gregsexton/MatchTag'                                                                                                                                                           
-Plug 'bling/vim-airline'                                                                                                                                                             
-Plug 'hdima/python-syntax'                                                                                                                                                           
+" HTML tag matching
+Plug 'gregsexton/MatchTag'
+" pretty tab bar
+Plug 'bling/vim-airline'
+
+" More up-to-date fork of 'hdima/python-syntax'
+Plug 'achimnol/python-syntax'
+" syntax highlighting for less
 Plug 'groenewege/vim-less'
-Plug 'ctrlpvim/ctrlp.vim'
+" auto-format sql files
+Plug 'b4b4r07/vim-sqlfmt'
+" highlighting for ansible yaml files
 Plug 'chase/vim-ansible-yaml'
+" async autocomplete for neovim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" runs linters such as flake8, mypy, jslint, etc
 Plug 'neomake/neomake'
-Plug 'mpyatishev/vim-sqlformat'
+" quick snippet shortcuts
 Plug 'SirVer/ultisnips'
 
 call plug#end()
 
-" set runtimepath+=~/projects/stream
+set runtimepath+=~/projects/stream
+
+" vim-sqlfmt
+let g:sqlfmt_command = "sqlformat"
+let g:sqlfmt_options = "-r -k upper"
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -82,8 +103,8 @@ colorscheme flattened_dark
 " let g:solarized_termcolors=256
 " let g:solarized_termtrans=1
 " colorscheme solarized
-" 
-" if exists("g:colors_name") 
+"
+" if exists("g:colors_name")
 "     if g:colors_name != 'solarized'
 "         " I despise bright yellow line numbers
 "         " disabled for solarized
@@ -105,7 +126,6 @@ imap <left> <nop>
 imap <right> <nop>
 
 
-syntax on
 " prevent slow downs from syntax highlighting
 set synmaxcol=2048
 set mouse=
@@ -129,10 +149,6 @@ set smartcase           " ignore case when lowercase
 
 " always have some lines of text when scrolling
 set scrolloff=8
-
-filetype on             " Enable filetype detection
-filetype indent on      " Enable filetype-specific indenting
-filetype plugin on      " Enable filetype-specific plugins
 
 set bs=indent,eol,start " allow backspacing over everything in insert mode
 "set ai                 " always set autoindenting on
@@ -160,5 +176,5 @@ if has("autocmd")
   \ endif
 endif
 
-" 
+" w!!
 cmap w!! w !sudo tee > /dev/null %
