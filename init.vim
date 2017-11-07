@@ -42,7 +42,7 @@ Plug 'chase/vim-ansible-yaml'
 " async autocomplete for neovim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " runs linters such as flake8, mypy, jslint, etc
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 " quick snippet shortcuts
 Plug 'SirVer/ultisnips'
 
@@ -59,21 +59,14 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-autocmd CompleteDone * pclose
-let g:jedi#auto_close_doc = 0  " close preview window after completion
-let g:neomake_python_enabled_makers = ['flake8', 'mypy']
-let g:neomake_verbose = 0
-let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
-
-let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'WarningMsg',
-  \ }
-let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'ErrorMsg',
-  \ }
-
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['flake8', 'mypy'],
+\}
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " The Silver Searcher
 if executable('ag')
@@ -162,10 +155,9 @@ set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set number              " linenumbers
 
+
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-
-  autocmd! BufWritePost,BufEnter * Neomake
 
   " In text files, always limit the width of text to 78 characters
   autocmd BufRead *.txt set tw=78
