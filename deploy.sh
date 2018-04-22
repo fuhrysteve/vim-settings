@@ -1,5 +1,7 @@
 #!/bin/bash -euo pipefail
 
+mkdir -p "$HOME/.config/nvim"
+
 if [[ $EUID = 0 ]]; then
     read -r -p "You're running as root. Are you sure you want to proceed? [y/N]" response
     response=${response,,} # tolower
