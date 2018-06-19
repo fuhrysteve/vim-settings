@@ -1,6 +1,6 @@
 #!/bin/bash -euo pipefail
 
-apt-get install -y software-properties-common python-dev python-pip python3-dev python3-pip
+apt install -y software-properties-common python3-dev python3-pip build-essential curl
 
 add_ppa() {
   for i in "$@"; do
@@ -16,7 +16,6 @@ add_ppa() {
 }
 
 add_ppa neovim-ppa/stable
-apt-get update
-apt-get install -y neovim
+apt update
+apt install -y neovim
 sudo -H pip3 install -U neovim
-sudo -H pip install -U neovim
