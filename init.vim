@@ -7,7 +7,7 @@ set guicursor=
 call plug#begin('~/.local/share/nvim/plugged')
 
 let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3.7'
 
 " Sensible VIM Defaults
 Plug 'tpope/vim-sensible'
@@ -19,10 +19,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 " improved indentation & syntax
 Plug 'pangloss/vim-javascript'
+" Plug 'vimlab/neojs'
 
 if has('python')
     " Python smart autocompletion
-    Plug 'zchee/deoplete-jedi'
+    Plug 'zchee/deoplete-jedi', { 'do': ':UpdateRemotePlugins' }
 endif
 " better solarized theme
 Plug 'romainl/flattened'
@@ -30,6 +31,9 @@ Plug 'romainl/flattened'
 Plug 'gregsexton/MatchTag'
 " pretty tab bar
 Plug 'bling/vim-airline'
+
+" Git/mercurial/others diff icons on the side of the file lines
+Plug 'mhinz/vim-signify'
 
 " More up-to-date fork of 'hdima/python-syntax'
 Plug 'achimnol/python-syntax'
@@ -45,6 +49,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'w0rp/ale'
 " quick snippet shortcuts
 Plug 'SirVer/ultisnips'
+" Quick file opener
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
@@ -59,14 +65,22 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+" let g:jedi#auto_close_doc = 0  " close preview window after completion
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 let g:ale_linters = {
+\   'jsx': ['eslint'],
 \   'javascript': ['eslint'],
 \   'python': ['flake8', 'mypy'],
 \}
+" \   'python': ['flake8', 'mypy'],
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_python_mypy_options = '--ignore-missing-imports'
+" Don't run ale when text changes - mypy uses way too much CPU
+let g:ale_lint_on_text_changed = 'never'
 
 " The Silver Searcher
 if executable('ag')
@@ -83,10 +97,14 @@ endif
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+" set completeopt-=preview
 
 " Always show status bar
 set laststatus=2
 au BufReadPost *.conf set syntax=ini
+
+" set syntax of Jenkinsfile to groovy
+au BufNewFile,BufRead Jenkinsfile setf groovy
 
 set termguicolors
 set background=dark
