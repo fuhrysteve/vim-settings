@@ -18,4 +18,4 @@ add_ppa() {
 add_ppa neovim-ppa/stable
 apt update
 apt install -y neovim
-sudo -H pip3 install -U neovim
+sudo -H pip3 install -U pynvim
