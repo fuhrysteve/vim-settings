@@ -71,9 +71,10 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:ale_linters = {
 \   'jsx': ['eslint'],
 \   'javascript': ['eslint'],
-\   'python': ['flake8', 'mypy'],
+\   'python': ['flake8'],
 \}
 " \   'python': ['flake8', 'mypy'],
+let b:ale_fixers = {'python': ['black']}
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
