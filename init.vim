@@ -4,10 +4,11 @@ set nocompatible            " Use Vim defaults
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 set guicursor=
 
-call plug#begin('~/.local/share/nvim/plugged')
+"call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3.7'
+"let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 " Sensible VIM Defaults
 Plug 'tpope/vim-sensible'
@@ -30,10 +31,10 @@ Plug 'romainl/flattened'
 " HTML tag matching
 Plug 'gregsexton/MatchTag'
 " pretty tab bar
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 " Git/mercurial/others diff icons on the side of the file lines
-Plug 'mhinz/vim-signify'
+"Plug 'mhinz/vim-signify'
 
 " More up-to-date fork of 'hdima/python-syntax'
 Plug 'achimnol/python-syntax'
@@ -42,15 +43,22 @@ Plug 'groenewege/vim-less'
 " auto-format sql files
 Plug 'b4b4r07/vim-sqlfmt'
 " highlighting for ansible yaml files
-Plug 'chase/vim-ansible-yaml'
+"Plug 'chase/vim-ansible-yaml'
 " async autocomplete for neovim
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 " runs linters such as flake8, mypy, jslint, etc
 Plug 'w0rp/ale'
 " quick snippet shortcuts
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 " Quick file opener
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
@@ -74,7 +82,7 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \}
 " \   'python': ['flake8', 'mypy'],
-let b:ale_fixers = {'python': ['black']}
+let g:ale_fixers = {'python': ['black']}
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -99,6 +107,9 @@ endif
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 " set completeopt-=preview
+
+set foldmethod=syntax
+set nofoldenable
 
 " Always show status bar
 set laststatus=2

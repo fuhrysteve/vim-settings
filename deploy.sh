@@ -25,5 +25,5 @@ else
     echo "Creating symlink $HOME/.config/nvim/init.vim which points to $DIR/init.vim"
     ln -s "$DIR/init.vim" "$HOME/.config/nvim/init.vim"
 fi
-
+curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 nvim +PlugInstall! +UpdateRemotePlugins! +qall
