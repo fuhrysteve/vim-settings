@@ -54,7 +54,7 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 " runs linters such as flake8, mypy, jslint, etc
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " quick snippet shortcuts
 "Plug 'SirVer/ultisnips'
 " Quick file opener
