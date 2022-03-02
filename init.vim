@@ -76,13 +76,18 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:jedi#auto_close_doc = 0  " close preview window after completion
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
 let g:ale_linters = {
 \   'jsx': ['eslint'],
 \   'javascript': ['eslint'],
 \   'python': ['flake8'],
 \}
 " \   'python': ['flake8', 'mypy'],
-let g:ale_fixers = {'python': ['black']}
+let g:ale_fixers = {'python': ['black'], 'javascript': ['prettier', 'eslint'], 'jsx': ['prettier', 'eslint']}
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
